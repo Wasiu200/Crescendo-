@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Products - Crescendo</title>
+  <link rel="stylesheet" href="product.css" />
+  <li><a href="./cart.html">🛒</a></li>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="brand">
+        <div class="logo">Crescendo</div>
+        <div class="muted small tagline">Audio · Ecommerce</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html" class="active">Products</a>
+        <a href="./cart.html">🛒</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Products</h1>
+      <p class="muted">Browse our curated selection of earbuds, headphones and speakers.</p>
+    </div>
+  </section>
+
+  <main class="container products-main">
+
+    <div class="cart-summary" id="cart-summary">
+      <div class="cart-info">
+        <strong>Cart:</strong>
+        <span id="cart-count">0</span> items —
+        <strong>$<span id="cart-total">0.00</span></strong>
+      </div>
+      <div>
+        <button id="clear-cart" class="btn">Clear</button>
+      </div>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-logo">Crescendo</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html">Products</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="newsletter">
+        <h3>Join Our List Today!</h3>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Your Email" required>
+          <button type="submit" class="btn primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Crescendo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const products = [];
+    for (let i = 1; i <= 30; i++) {
+      const baseName = (i % 3 === 0) ? 'Headphones' : (i % 3 === 1) ? 'Earbuds' : 'Speaker';
+      const name = baseName + ' Model ' + (100 + i);
+      const price = (Math.round((50 + Math.random() * 300) * 100) / 100); // between $50 and $350
+      const desc = (baseName === 'Earbuds') ? 'Compact, lightweight in-ear design.' :
+                   (baseName === 'Headphones') ? 'Over-ear comfort with studio sound.' :
+                   'Portable speaker with rich bass.';
+    //   const img = `https://source.unsplash.com/collection/190727/800x600?sig=${i}`;
+    const img = `https://source.unsplash.com/300x300/?${baseName.toLowerCase()}&sig=${i}`;
+      products.push({ id: i, name, price, desc, img });
+    }
+    const cart = {
+      items: 0,
+      total: 0.00
+    };
+
+    function fmt(n) {
+      return n.toFixed(2);
+    }
+
+    function updateCartUI() {
+      document.getElementById('cart-count').textContent = cart.items;
+      document.getElementById('cart-total').textContent = fmt(cart.total);
+    }
+
+    document.getElementById('clear-cart').addEventListener('click', function(){
+      cart.items = 0;
+      cart.total = 0.00;
+      updateCartUI();
+    });
+
+    const grid = document.getElementById('products-grid');
+
+    function createProductCard(p) {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+
+      const img = document.createElement('img');
+      img.src = p.img;
+      img.alt = p.name;
+      img.loading = 'lazy';
+
+      const info = document.createElement('div');
+      info.className = 'product-info';
+
+      const title = document.createElement('div');
+      title.className = 'product-title';
+      title.textContent = p.name;
+
+      const desc = document.createElement('div');
+      desc.className = 'product-desc';
+      desc.textContent = p.desc;
+
+      const bottom = document.createElement('div');
+      bottom.className = 'product-bottom';
+
+      const price = document.createElement('div');
+      price.className = 'product-price';
+      price.textContent = '$' + p.price.toFixed(2);
+
+      const btn = document.createElement('button');
+      btn.className = 'btn primary';
+      btn.textContent = 'Add to Cart';
+      btn.addEventListener('click', function(){
+        cart.items += 1;
+        cart.total = Math.round((cart.total + p.price) * 100) / 100;
+        updateCartUI();
+        btn.textContent = 'Added';
+        setTimeout(() => btn.textContent = 'Add to Cart', 800);
+      });
+
+      bottom.appendChild(price);
+      bottom.appendChild(btn);
+
+      info.appendChild(title);
+      info.appendChild(desc);
+      info.appendChild(bottom);
+
+      card.appendChild(img);
+      card.appendChild(info);
+
+      return card;
+    }
+
+    products.forEach(p => {
+      const card = createProductCard(p);
+      grid.appendChild(card);
+    });
+
+    updateCartUI();
+
+    document.getElementById('newsletter-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = this.querySelector('input[type=email]').value;
+      if(!email) return alert('Please enter an email');
+      alert('Thanks for subscribing — ' + email);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
