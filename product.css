@@ -33,6 +33,21 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.nav-links{
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: purple;
+}
+
 .brand {
   display: flex;
   flex-direction: column;
@@ -211,6 +226,50 @@ body {
   margin-top: 18px;
   color: #9aa6b2;
 }
+
+   #allproducts {
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 24px;
+      }
+
+      .eachproducts {
+        font-family: Arial, sans-serif;
+        width: 300px;
+        padding: 20px;
+        background-color: #0b1220 ;
+        color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 20px auto;
+         text-decoration: dashed;
+      }
+
+.eachproducts button{
+  background-color: wheat;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 24px;
+  font-size: large;
+}
+
+.eachproducts:hover button{
+  background-color:aqua;
+  
+}
+
+      .allproducts image {
+        border-radius: 50%;
+        border: 5px black;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        background-color: aliceblue;
+        border-radius: 50%;
+        margin: 0 auto 15px auto;
+        padding-top: 100px;
+      }
 
 @media (max-width: 1000px) {
   .products-grid {

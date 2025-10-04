@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +17,6 @@ body {
   margin: 0 auto;
 }
 
-/* Navigation */
 .navbar {
   background-color: #ffffff;
   padding: 20px 0;
@@ -40,6 +38,15 @@ body {
   color: #333;
 }
 
+.nav-links{
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .nav-links a {
   text-decoration: none;
   color: #333;
@@ -50,10 +57,9 @@ body {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #ff4d5a;
+  color: purple;
 }
 
-/* Hero Section */
 .hero {
   background: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80") 
     center/cover no-repeat;
@@ -76,7 +82,6 @@ body {
   max-width: 600px;
 }
 
-/* Mission Section */
 .mission {
   padding: 80px 20px;
   background: #f9f9f9;
@@ -97,7 +102,6 @@ body {
   line-height: 1.8;
 }
 
-/* Footer */
 .footer {
   background-color: #111;
   color: #fff;
@@ -134,7 +138,6 @@ body {
   color: #ff4d5a;
 }
 
-/* Newsletter */
 .newsletter {
   max-width: 300px;
 }
@@ -170,7 +173,6 @@ body {
   background: #e03e4a;
 }
 
-/* Footer Bottom */
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
@@ -178,7 +180,6 @@ body {
   color: #aaa;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {
     display: flex;

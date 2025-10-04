@@ -74,6 +74,13 @@ header {
   text-decoration: none;
   font-weight: 600;
 }
+
+.nav-list a:hover,
+.nav-list a.active {
+  color: purple;
+}
+
+
 .nav-actions {
   display: flex;
   gap: 12px;
